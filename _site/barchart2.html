@@ -13,28 +13,28 @@ var svg = d3.select("svg"),
     height = +svg.attr("height") - margin.top - margin.bottom,
     g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 var x0 = d3.scaleBand()
-    .rangeRound([0, width])
-    .paddingInner(0.1);
+    .rangeRound([2, width])
+    .paddingInner(0.2);
 var x1 = d3.scaleBand()
     .padding(0.05);
 var y = d3.scaleLinear()
     .rangeRound([height, 0]);
 var z = d3.scaleOrdinal()
-    .range(["#779ec7", "#3775b5", "#2d3c58"]);
-d3.csv("data.csv", function(d, i, columns) {
+    .range(["#feaa64", "#5bcaff", "#01a7fb"]);
+d3.csv("BarData.csv", function(d, i, columns) {
   for (var i = 1, n = columns.length; i < n; ++i) d[columns[i]] = +d[columns[i]];
   return d;
 }, function(error, data) {
   if (error) throw error;
   var keys = data.columns.slice(1);
-  x0.domain(data.map(function(d) { return d.Race; }));
+  x0.domain(data.map(function(d) { return d.Facts; }));
   x1.domain(keys).rangeRound([0, x0.bandwidth()]);
   y.domain([0, d3.max(data, function(d) { return d3.max(keys, function(key) { return d[key]; }); })]).nice();
   g.append("g")
     .selectAll("g")
     .data(data)
     .enter().append("g")
-      .attr("transform", function(d) { return "translate(" + x0(d.Race) + ",0)"; })
+      .attr("transform", function(d) { return "translate(" + x0(d.Facts) + ",0)"; })
     .selectAll("rect")
     .data(function(d) { return keys.map(function(key) { return {key: key, value: d[key]}; }); })
     .enter().append("rect")
@@ -57,7 +57,7 @@ d3.csv("data.csv", function(d, i, columns) {
       .attr("fill", "#000")
       .attr("font-weight", "bold")
       .attr("text-anchor", "start")
-      .text("Graduation Rate");
+      .text("Percentage");
   var legend = g.append("g")
       .attr("font-family", "sans-serif")
       .attr("font-size", 10)
