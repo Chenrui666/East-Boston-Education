@@ -109,7 +109,7 @@ d3.csv("ScatterPlotData.csv", function(error, data) {
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("ELL Rate");
+      .text("English Language learners Rate");
 
   // draw dots
   svg.selectAll(".dot")
@@ -170,7 +170,88 @@ d3.csv("ScatterPlotData.csv", function(error, data) {
   //     .attr("dy", ".35em")
   //     .style("text-anchor", "end")
   //     .text(function(d) { return d;})
+  var lg = calcLinear(data, "GraduationRate", "ELL", d3.min(data, function(d){ return d.GraduationRate}), d3.min(data, function(d){ return d.GraduationRate}));
+
+       svg.append("line")
+           .attr("class", "regression")
+           .attr("x1", xScale(lg.ptA.x))
+           .attr("y1", yScale(lg.ptA.y))
+           .attr("x2", xScale(lg.ptB.x))
+           .attr("y2", yScale(lg.ptB.y))
+           .attr("stroke", "#01a7fb")
+           .attr("stroke-dasharray", "10,5")
+           .attr("stroke-width","3px")
+
+           .style("opacity", "0.5");
+
+           function calcLinear(data, x, y, minX, minY){
+                var n = data.length;
+                var pts = [];
+                data.forEach(function(d,i){
+
+                  var obj = {};
+                  obj.x = d[x];
+                  obj.y = d[y];
+                  obj.mult = obj.x*obj.y;
+                  pts.push(obj);
+                });
+
+                var sum = 0;
+                var xSum = 0;
+                var ySum = 0;
+                var sumSq = 0;
+                pts.forEach(function(pt){
+                  sum = sum + pt.mult;
+                  xSum = xSum + pt.x;
+                  ySum = ySum + pt.y;
+                  sumSq = sumSq + (pt.x * pt.x);
+                });
+                var a = sum * n;
+                var b = xSum * ySum;
+                var c = sumSq * n;
+                var d = xSum * xSum;
+                var m = (a - b) / (c - d);
+                var e = ySum;
+                var f = m * xSum;
+                var b = (e - f) / n;
+
+                return {
+                  ptA : {
+                    x: minX,
+                    y: m * minX + b
+                  },
+                  ptB : {
+                    y: minY,
+                    x: (minY - b) / m
+                  }
+                }
+
+              }
+
+
+          var legend = g.append("g")
+                  .attr("font-family", "sans-serif")
+                  .attr("font-size", 10)
+                  .attr("text-anchor", "end")
+                .selectAll("g")
+                .data(keys.slice().reverse())
+                .enter().append("g")
+                  .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+              legend.append("rect")
+                  .attr("x", width - 19)
+                  .attr("width", 19)
+                  .attr("height", 19)
+                  .attr("fill", z);
+              legend.append("text")
+                  .attr("x", width - 24)
+                  .attr("y", 9.5)
+                  .attr("dy", "0.32em")
+                  .text(function(d) { return d; });
 });
+
+
+
+
 
 </script>
 </body>

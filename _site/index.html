@@ -77,36 +77,42 @@
     <div class="container">
     <div class="row">
       <div class="column EastBoston">
-        <h1 class="EastBoston_head">What blocks students pursuing higher achievements
+        <h1 class="EastBoston_head">What blocks student achievement
 in East Boston? </h1>
 
           <!-- <p>This index.html page is a placeholder with the CSS, font and favicon. It's just waiting for you to add some content! If you need some help hit up the <a href="http://www.getskeleton.com">Skeleton documentation</a>.This index.html page is a placeholder with the CSS, font and favicon. It's just waiting for you to add some content!</p> -->
-          <p>The high school in East Boston are suffering lower graduation rate than the other parts in the whole Massachusetts state. What lacks them achieve better in high school?
-            Porverty, early performance, or family attitude? East Boston High has lots of EEL(English language learners) who has difficulties in fit in the English leasrning situation.
-            Are they struggling or quitting? This project aims at figuring out the situation in East Boston and find the story behind the data.</p>
+          <p>East Boston High School has a lower graduation rate than many other schools in Boston and Massachusetts. This project aims to find the story behind the data.</p>
           <h5 class="EastBoston_byline">By Chenrui Ye</h5>
 
 
-          <h2 class="EastBoston_head">The probable reasons lack the students’ acedamic achievement</h2>
+          <!-- <h2 class="EastBoston_head">The probable reasons lack the students’ academic achievement</h2> -->
           <!-- <iframe src="barchart.html" width=980 height=530 scrolling ="no"></iframe> -->
       </div>
   </div>
 </div>
-  <div class="wholepage">
+  <!-- <div class="wholepage">
     <img src="ThreeReasons.jpg" width="100%" text-align="center">
-  </div>
+  </div> -->
   <div class="container">
     <div class="row">
       <div class="column EastBoston">
         <p></br></p>
 
-        <h2 class="EastBoston_head">Does these reasons really lack the students performance?</h2>
-        <iframe id= "scatterplot" src="ScatterPlot-LI.html" width=980 height=530 scrolling ="no"></iframe>
-        <input type="button" value="Low Income" onclick="LowIncome();">
-        <input type="button" value="ELL" onclick="ELL();">
+        <h2 class="EastBoston_head">Does factors affect student performance?</h2>
         <p>
-          The scatter plot above shows correlations between probable reasons and the graduation rate, showing all public high school in Boston. Choosing East Boston High to represent the East Boston situation is meaningful because that is the bigger one between the only two high schools in that district. Accordingly, the East Boston High does have higher EEL rate, higher low income rate and lower graduation rate, compared with Massachusetts.
-        </p>
+          Two of the main factors contributing to low student achievement are poverty and being a non-native speaker of English. We measure non-native speakers by counting the number of English Language Learners, or ELL. These charts show the relation between poverty and ELL enrollment and low rates of high school graduation.
+          </p>
+          <div style="text-align:center">
+         <img src="legend_05.jpg" style="margin-top:2%;width:900px;">
+       </div>
+        <!-- <img src = "legend_05.jpg"  text-align="center"> -->
+        <iframe id= "scatterplot" src="ScatterPlot-LI.html" width=980 height=530 scrolling ="no"></iframe>
+<div text-align="center">
+        <input type="button" value="Low Income" onclick="LowIncome();">
+        <input type="button" value="non-native Speakers" onclick="ELL();">
+</div>
+<p>(Move your mouse over the dots to see the details.)</p>
+
         <p></br></p>
 
         <h2 class="EastBoston_head">How about East Boston compared with the city and the State?</h2>

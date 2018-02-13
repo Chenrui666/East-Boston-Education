@@ -43,6 +43,9 @@ d3.csv("BarData.csv", function(d, i, columns) {
       .attr("width", x1.bandwidth())
       .attr("height", function(d) { return height - y(d.value); })
       .attr("fill", function(d) { return z(d.key); });
+    // .enter().append("text")
+    //   .text(function(d){ return d.value+"%"})
+    //   .attr("x",);
   g.append("g")
       .attr("class", "axis")
       .attr("transform", "translate(0," + height + ")")
