@@ -2,9 +2,6 @@
 <html>
 <meta charset="utf-8">
 
-<!-- Example based on http://bl.ocks.org/mbostock/3887118 -->
-<!-- Tooltip example from http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html -->
-<!-- Coding style based on http://gist.github.com/mbostock/5977197 -->
 
 <style>
 body {
@@ -37,12 +34,6 @@ var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-/*
- * value accessor - returns the value to encode for a given data object.
- * scale - maps value to a visual display encoding, such as a pixel position.
- * map function - maps from data value to display value
- * axis - sets up axis
- */
 
 // setup x
 var xValue = function(d) { return d.GraduationRate;}, // data -> value
@@ -56,11 +47,7 @@ var yValue = function(d) { return d["LowIncome"];}, // data -> value
     yMap = function(d) { return yScale(yValue(d));}, // data -> display
     yAxis = d3.svg.axis().scale(yScale).orient("left");
 
-// setup fill color
-// var cValue = function(d) { return d.Manufacturer;},
-//     color = d3.scale.category10();
 
-// add the graph canvas to the body of the webpage
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -143,27 +130,6 @@ d3.csv("ScatterPlotData.csv", function(error, data) {
                .style("opacity", 0);
       });
 
-  // draw legend
-  // var legend = svg.selectAll(".legend")
-  //     .data(color.domain())
-  //   .enter().append("g")
-  //     .attr("class", "legend")
-  //     .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
-  //
-  // // draw legend colored rectangles
-  // legend.append("rect")
-  //     .attr("x", width - 18)
-  //     .attr("width", 18)
-  //     .attr("height", 18)
-  //     .style("fill", color);
-  //
-  // // draw legend text
-  // legend.append("text")
-  //     .attr("x", width - 24)
-  //     .attr("y", 9)
-  //     .attr("dy", ".35em")
-  //     .style("text-anchor", "end")
-  //     .text(function(d) { return d;})
 
   var lg = calcLinear(data, "GraduationRate", "LowIncome", d3.min(data, function(d){ return d.GraduationRate}), d3.min(data, function(d){ return d.GraduationRate}));
 
@@ -183,7 +149,7 @@ d3.csv("ScatterPlotData.csv", function(error, data) {
                 var n = data.length;
                 var pts = [];
                 data.forEach(function(d,i){
-                  
+
                   var obj = {};
                   obj.x = d[x];
                   obj.y = d[y];

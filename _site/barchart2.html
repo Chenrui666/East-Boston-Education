@@ -13,10 +13,10 @@ var svg = d3.select("svg"),
     height = +svg.attr("height") - margin.top - margin.bottom,
     g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 var x0 = d3.scaleBand()
-    .rangeRound([2, width])
-    .paddingInner(0.2);
+    .rangeRound([50, width])
+    .paddingInner(0.3);
 var x1 = d3.scaleBand()
-    .padding(0.05);
+    .padding(0.15);
 var y = d3.scaleLinear()
     .rangeRound([height, 0]);
 var z = d3.scaleOrdinal()
@@ -68,15 +68,15 @@ d3.csv("BarData.csv", function(d, i, columns) {
     .selectAll("g")
     .data(keys.slice().reverse())
     .enter().append("g")
-      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+      .attr("transform", function(d, i) { return "translate(0," + i * 30 + ")"; });
   legend.append("rect")
-      .attr("x", width - 19)
-      .attr("width", 19)
-      .attr("height", 19)
+      .attr("x", width - 30)
+      .attr("width", 24)
+      .attr("height", 24)
       .attr("fill", z);
   legend.append("text")
-      .attr("x", width - 24)
-      .attr("y", 9.5)
+      .attr("x", width - 36)
+      .attr("y", 12)
       .attr("dy", "0.32em")
       .text(function(d) { return d; });
 });

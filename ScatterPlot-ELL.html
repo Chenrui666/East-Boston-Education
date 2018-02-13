@@ -2,9 +2,6 @@
 <html>
 <meta charset="utf-8">
 
-<!-- Example based on http://bl.ocks.org/mbostock/3887118 -->
-<!-- Tooltip example from http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html -->
-<!-- Coding style based on http://gist.github.com/mbostock/5977197 -->
 
 <style>
 body {
@@ -106,7 +103,7 @@ d3.csv("ScatterPlotData.csv", function(error, data) {
     .append("text")
       .attr("class", "label")
       .attr("transform", "rotate(-90)")
-      .attr("y", 6)
+      .attr("y", -40)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
       .text("English Language learners Rate");
@@ -135,11 +132,7 @@ d3.csv("ScatterPlotData.csv", function(error, data) {
                .style("opacity", .9);
           tooltip.html(d.HighSchool + "<br/> (GR: " + xValue(d)
 	        + ", ELL: " + yValue(d) + ")")
-               // .style("left", function(d){
-               //   if (d3.event.pageX >= 450)
-               //   return (d3.event.pageX - 30) + "px");
-               //   else return (d3.event.pageX + 10) + "px")
-               // })
+
                .style("left", (d3.event.pageX + 5) + "px")
                .style("top", (d3.event.pageY - 28) + "px");
       })
@@ -149,27 +142,7 @@ d3.csv("ScatterPlotData.csv", function(error, data) {
                .style("opacity", 0);
       });
 
-  // draw legend
-  // var legend = svg.selectAll(".legend")
-  //     .data(color.domain())
-  //   .enter().append("g")
-  //     .attr("class", "legend")
-  //     .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
-  //
-  // // draw legend colored rectangles
-  // legend.append("rect")
-  //     .attr("x", width - 18)
-  //     .attr("width", 18)
-  //     .attr("height", 18)
-  //     .style("fill", color);
-  //
-  // // draw legend text
-  // legend.append("text")
-  //     .attr("x", width - 24)
-  //     .attr("y", 9)
-  //     .attr("dy", ".35em")
-  //     .style("text-anchor", "end")
-  //     .text(function(d) { return d;})
+
   var lg = calcLinear(data, "GraduationRate", "ELL", d3.min(data, function(d){ return d.GraduationRate}), d3.min(data, function(d){ return d.GraduationRate}));
 
        svg.append("line")
